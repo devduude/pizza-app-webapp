@@ -4,4 +4,5 @@ module.exports = {
     port: 'port',
     publicHost: 'publicHost',
   },
+  server: { url: 'url' },
 };

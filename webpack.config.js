@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const config = require('config');
@@ -38,8 +39,12 @@ module.exports = {
     },
   },
   plugins: [
+    new webpack.DefinePlugin({ SERVER_URL: JSON.stringify(config.get('server.url')) }),
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
+    }),
   ],
   devServer: {
     compress: true,
