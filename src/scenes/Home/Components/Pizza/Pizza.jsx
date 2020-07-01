@@ -15,9 +15,9 @@ const Pizza = (props) => {
   return (
     <div className="Pizza_container">
       <img src={imageSRC} alt={title} />
-      <h5>{title}</h5>
+      <h5>{title.toUpperCase()}</h5>
       <p>{description}</p>
-      <p>{price}</p>
+      <p>{price.usd}</p>
     </div>
   );
 };
@@ -25,7 +25,10 @@ const Pizza = (props) => {
 Pizza.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  price: PropTypes.number,
+  price: PropTypes.exact({
+    usd: PropTypes.number,
+    eur: PropTypes.number,
+  }),
   imageSRC: PropTypes.string,
 };
 
