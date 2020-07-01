@@ -1,0 +1,19 @@
+.container
+  display grid
+  gap 1rem
+  &__pizzas
+    display grid
+    grid-template-columns repeat(4, minmax(200px, 1fr))
+    grid-template-columns repeat(auto-fit, minmax(200px, 1fr))
+    gap 1rem
+  &__topbar
+    align-items end
+    display grid
+    height 50px
+    grid-template-columns repeat(2, 1fr)
+  &__title
+    justify-self flex-start
+    font-size 30px
+  &__basket
+    justify-self flex-end
+    font-size 20px
