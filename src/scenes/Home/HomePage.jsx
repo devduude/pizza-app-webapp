@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import Pizza from './Components/Pizza/Pizza.jsx';
 
@@ -33,16 +34,16 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="container__topbar">
-        <span className="container__title">
+    <div className="home_container">
+      <div className="home_container__topbar">
+        <span className="home_container__title">
           Pizza place
         </span>
-        <span className="container__basket">
+        <RouterLink to="/basket" className="home_container__basket">
           Basket
-        </span>
+        </RouterLink>
       </div>
-      <div className="container__pizzas">
+      <div className="home_container__pizzas">
         {pizzaArray}
       </div>
     </div>

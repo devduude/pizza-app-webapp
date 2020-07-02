@@ -10,7 +10,10 @@ const Pizza = (props) => {
     description,
     price,
     imageSRC,
+    currency = 'eur',
   } = props;
+
+  const priceValue = currency == 'usd' ? `$${price.usd}` : `€${price.eur}`;
 
   return (
     <div className="pizza_container">
@@ -18,8 +21,11 @@ const Pizza = (props) => {
       <div className="pizza_container__overlay pizza_container__overlay--blur">
         <p className="pizza_container__description">{description}</p>
       </div>
-      <h5>{title.toUpperCase()}</h5>
-      <p>{price.usd}</p>
+      <p className="pizza_container__title">{title.toUpperCase()}</p>
+      <div className="pizza_container__price_and_button">
+        <span className="pizza_container__price">{priceValue}</span>
+        <button className="pizza_container__button" type="button">Add to basket</button>
+      </div>
     </div>
   );
 };
