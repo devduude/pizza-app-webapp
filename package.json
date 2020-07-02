@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --mode development --hot",
+    "start": "node startup",
+    "heroku-postbuild": "npm run build",
+    "build": "webpack --config webpack.config.js --mode production",
+    "dev": "webpack-dev-server --config webpack.config.js --mode development --hot",
     "eslint": "eslint . --ext .js --ext .jsx"
   },
   "husky": {
@@ -50,6 +53,7 @@
     "@babel/register": "^7.10.3",
     "clean-webpack-plugin": "^3.0.0",
     "config": "^3.3.1",
+    "express": "^4.17.1",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

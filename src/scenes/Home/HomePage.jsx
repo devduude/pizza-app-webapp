@@ -9,10 +9,12 @@ import './homepage.styl';
 const HomePage = () => {
   const [ pizzaArray, addPizza ] = React.useState([]);
 
+  // eslint-disable-next-line no-undef
+  const serverURL = process.env.SERVER_URL || SERVER_URL;
+
   React.useEffect(() => {
     async function getPizzas () {
-      // eslint-disable-next-line no-undef
-      const response = await fetch(`${SERVER_URL}/pizza`);
+      const response = await fetch(`${serverURL}/pizza`);
       const { payload: pizzas } = await response.json();
 
       for (const pizza of pizzas) {
