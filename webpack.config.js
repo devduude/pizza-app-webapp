@@ -39,7 +39,7 @@ module.exports = {
     },
   },
   plugins: [
-    new webpack.DefinePlugin({ SERVER_URL: process.env.SERVER_URL || JSON.stringify(config.get('server.url')) }),
+    new webpack.DefinePlugin({ SERVER_URL: JSON.stringify(process.env.SERVER_URL || config.get('server.url')) }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
