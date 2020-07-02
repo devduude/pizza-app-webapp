@@ -5,9 +5,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const config = require('config');
 
 
-const host = process.env.HOST || config.get('webpack.host');
-const port = process.env.PORT || config.get('webpack.port');
-const publicHost = process.env.HOST || config.get('webpack.publicHost');
+const host = process.env.NODE_ENV !== 'production' && config.get('webpack.host');
+const port = process.env.NODE_ENV !== 'production' && config.get('webpack.port');
+const publicHost = process.env.NODE_ENV !== 'production' && config.get('webpack.publicHost');
 
 module.exports = {
   entry: './public/index.js',
