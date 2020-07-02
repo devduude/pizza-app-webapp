@@ -39,7 +39,7 @@ module.exports = {
     },
   },
   plugins: [
-    new webpack.DefinePlugin({ SERVER_URL: process.env.NODE_ENV !== 'production' ? JSON.stringify(config.get('server.url')) : undefined }),
+    new webpack.DefinePlugin({ SERVER_URL: process.env.SERVER_URL || JSON.stringify(config.get('server.url')) }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
