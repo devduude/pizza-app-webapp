@@ -5,9 +5,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const config = require('config');
 
 
-const host = process.env.NODE_ENV !== 'production' && config.get('webpack.host');
-const port = process.env.NODE_ENV !== 'production' && config.get('webpack.port');
-const publicHost = process.env.NODE_ENV !== 'production' && config.get('webpack.publicHost');
+const host = process.env.NODE_ENV !== 'production' ? config.get('webpack.host') : undefined;
+const port = process.env.NODE_ENV !== 'production' ? config.get('webpack.port') : undefined;
+const publicHost = process.env.NODE_ENV !== 'production' ? config.get('webpack.publicHost') : undefined;
 
 module.exports = {
   entry: './public/index.js',
@@ -39,7 +39,7 @@ module.exports = {
     },
   },
   plugins: [
-    new webpack.DefinePlugin({ SERVER_URL: JSON.stringify(config.get('server.url')) }),
+    new webpack.DefinePlugin({ SERVER_URL: process.env.NODE_ENV !== 'production' ? JSON.stringify(config.get('server.url')) : undefined }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
