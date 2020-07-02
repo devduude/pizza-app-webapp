@@ -13,10 +13,12 @@ const Pizza = (props) => {
   } = props;
 
   return (
-    <div className="Pizza_container">
-      <img src={imageSRC} alt={title} />
+    <div className="pizza_container">
+      <img className="pizza_container__img" src={imageSRC} alt={title} />
+      <div className="pizza_container__overlay pizza_container__overlay--blur">
+        <p className="pizza_container__description">{description}</p>
+      </div>
       <h5>{title.toUpperCase()}</h5>
-      <p>{description}</p>
       <p>{price.usd}</p>
     </div>
   );
