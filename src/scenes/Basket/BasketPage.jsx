@@ -27,6 +27,9 @@ const BasketPage = (props) => {
     basketItemsCount,
   } = props;
 
+  // eslint-disable-next-line no-undef
+  const serverURL = process.env.SERVER_URL || SERVER_URL;
+
   const pizzas = orderItems.join(', ');
   const deliveryCost = currency == 'eur' ? `€${deliveryCostEUR}` : `$${deliveryCostUSD}`;
   const orderPrice = currency == 'eur' ? `€${itemsPriceEUR + deliveryCostEUR}` : `$${itemsPriceUSD + deliveryCostUSD}`;
@@ -34,10 +37,18 @@ const BasketPage = (props) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !pizzas
+      || !firstName
+      || !lastName
+      || !address
+      || !phone
+    ) return alert('You can not create an empty order!');
+
     const orderData = {
       orderID: uuid(),
-      orderDate: new Date().toLocaleDateString('ru-RU', { timeZone: 'Europe/Moscow', dateStyle: 'short', timeStyle: 'short' }),
-      orderDetails: orderItems,
+      orderDate: new Date(),
+      orderDetails: pizzas,
       firstName,
       lastName,
       address,
@@ -46,10 +57,20 @@ const BasketPage = (props) => {
       priceEUR: itemsPriceEUR + deliveryCostEUR,
     };
 
-    /** FIXME: send order here via api */
-    console.log(orderData);
+    const response = await fetch(`${serverURL}/order/insert`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderData),
+    });
 
-    alert('The order was recorded!');
+    const parsedResponse = await response.json();
+
+    const log = `${parsedResponse.statusCode}: ${parsedResponse.message}\n\n You can see list of all the orders here: ${serverURL}/orders`;
+
+    alert(log);
+    console.log(log);
+
     resetOrder();
   };
 
