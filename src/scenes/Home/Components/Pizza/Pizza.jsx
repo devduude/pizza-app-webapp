@@ -10,7 +10,7 @@ const Pizza = (props) => {
     description,
     price,
     imageSRC,
-    currency = 'eur',
+    currency,
   } = props;
 
   const priceValue = currency == 'usd' ? `$${price.usd}` : `€${price.eur}`;
@@ -37,6 +37,7 @@ Pizza.propTypes = {
     usd: PropTypes.number,
     eur: PropTypes.number,
   }),
+  currency: PropTypes.oneOf([ 'eur', 'usd' ]),
   imageSRC: PropTypes.string,
 };
 

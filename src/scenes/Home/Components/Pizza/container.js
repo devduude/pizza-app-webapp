@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import HomePage from './HomePage.jsx';
+import Pizza from './Pizza.jsx';
 
 
-// const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({ currency: state.home.currency });
 
 export default connect(
-  null,
+  mapStateToProps,
   null
-)(HomePage);
+)(Pizza);
