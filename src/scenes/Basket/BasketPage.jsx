@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 
 import './basketpage.styl';
 
@@ -24,9 +24,10 @@ const BasketPage = (props) => {
     updateFirstName,
     updateLastName,
     updatePhone,
+    basketItemsCount,
   } = props;
 
-  const pizzas = orderItems.join(' ');
+  const pizzas = orderItems.join(', ');
   const deliveryCost = currency == 'eur' ? `€${deliveryCostEUR}` : `$${deliveryCostUSD}`;
   const orderPrice = currency == 'eur' ? `€${itemsPriceEUR + deliveryCostEUR}` : `$${itemsPriceUSD + deliveryCostUSD}`;
 
@@ -55,21 +56,28 @@ const BasketPage = (props) => {
   return (
     <div className="basket_container">
       <div className="basket_container__topbar">
-        <div className="home_container__left_side">
-          <RouterLink to="/" className="home_container__title">
+        <div className="basket_container__left_side">
+          <RouterLink to="/" className="basket_container__title">
             Pizza place
           </RouterLink>
           <button
             onClick={switchCurrency}
             type="button"
-            className="home_container__currency"
+            className="basket_container__currency"
           >
             {currency}
           </button>
         </div>
-        <span className="basket_container__basket">
-          Basket
-        </span>
+        <div className="basket_container__right_side">
+          <span className="basket_container__basket_counter">
+            (
+            {basketItemsCount}
+            )
+          </span>
+          <span className="basket_container__basket">
+            Basket
+          </span>
+        </div>
       </div>
 
       <form className="basket_container__form">
@@ -100,12 +108,15 @@ const BasketPage = (props) => {
         <p>Items:</p>
         <p>{pizzas}</p>
         <p>
-          Delivery cost -
+          Delivery cost:
           {' '}
           {deliveryCost}
         </p>
-        <p>Total price:</p>
-        <p>{orderPrice}</p>
+        <p>
+          Total price:
+          {' '}
+          {orderPrice}
+        </p>
       </div>
 
       <button type="button" onClick={handleFormSubmit}>Make an order</button>
@@ -131,6 +142,7 @@ BasketPage.propTypes = {
   lastName: PropTypes.string,
   phone: PropTypes.string,
   address: PropTypes.string,
+  basketItemsCount: PropTypes.number,
 };
 
 

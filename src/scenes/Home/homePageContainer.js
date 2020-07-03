@@ -4,7 +4,10 @@ import HomePage from './HomePage.jsx';
 import switchCurrency from './actions.js';
 
 
-const mapStateToProps = (state) => ({ currency: state.home.currency });
+const mapStateToProps = (state) => ({
+  currency: state.home.currency,
+  basketItemsCount: state.basket.orderItems.length,
+});
 
 const mapDispatchToProps = { switchCurrency };
 

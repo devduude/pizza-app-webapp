@@ -11,6 +11,7 @@ const HomePage = (props) => {
   const {
     currency,
     switchCurrency,
+    basketItemsCount,
   } = props;
 
   const [ pizzaArray, addPizza ] = React.useState([]);
@@ -56,9 +57,16 @@ const HomePage = (props) => {
             {currency}
           </button>
         </div>
-        <RouterLink to="/basket" className="home_container__basket">
-          Basket
-        </RouterLink>
+        <div className="home_container__right_side">
+          <span>
+            (
+            {basketItemsCount}
+            )
+          </span>
+          <RouterLink to="/basket" className="home_container__basket">
+            Basket
+          </RouterLink>
+        </div>
       </div>
       <div className="home_container__pizzas">
         {pizzaArray}
@@ -70,6 +78,7 @@ const HomePage = (props) => {
 HomePage.propTypes = {
   currency: PropTypes.oneOf([ 'usd', 'eur' ]),
   switchCurrency: PropTypes.func,
+  basketItemsCount: PropTypes.number,
 };
 
 

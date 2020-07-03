@@ -22,6 +22,7 @@ const mapStateToProps = (state) => ({
   phone: state.basket.phone,
   address: state.basket.address,
   orderItems: state.basket.orderItems,
+  basketItemsCount: state.basket.orderItems.length,
 });
 
 const mapDispatchToProps = {

@@ -7,18 +7,27 @@
     height 50px
     grid-template-columns repeat(2, 1fr)
   &__currency
-  cursor pointer
+    cursor pointer
   &__left_side
     justify-self flex-start
+    position relative
+    & button
+      position relative
+      bottom 2px
   &__title
     margin-right 15px
-    justify-self flex-start
     font-size 30px
     color inherit
     text-decoration none
   &__basket
+    margin-left 5px
+    text-decoration underline
+  &__right_side
     justify-self flex-end
     font-size 20px
-    text-decoration underline
+    position relative
+  &__basket_counter
+    position relative
+    bottom 2px
   & input
     width 100%

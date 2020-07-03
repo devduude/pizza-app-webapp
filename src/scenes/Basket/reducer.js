@@ -39,7 +39,7 @@ function store (state = initialState, action) {
     case 'UPDATE_ORDER_ITEMS':
       return {
         ...state,
-        orderItems: state.orderItems.push(action.payload),
+        orderItems: [ ...state.orderItems, action.payload ],
       };
 
     case 'UPDATE_ITEMS_PRICE_USD':
