@@ -11,9 +11,18 @@ const Pizza = (props) => {
     price,
     imageSRC,
     currency,
+    updateItemsPriceEUR,
+    updateItemsPriceUSD,
+    updateOrderItems,
   } = props;
 
   const priceValue = currency == 'usd' ? `$${price.usd}` : `€${price.eur}`;
+
+  const handleAddToBasket = () => {
+    updateItemsPriceEUR(price.eur);
+    updateItemsPriceUSD(price.usd);
+    updateOrderItems(title);
+  };
 
   return (
     <div className="pizza_container">
@@ -24,7 +33,13 @@ const Pizza = (props) => {
       <p className="pizza_container__title">{title.toUpperCase()}</p>
       <div className="pizza_container__price_and_button">
         <span className="pizza_container__price">{priceValue}</span>
-        <button className="pizza_container__button" type="button">Add to basket</button>
+        <button
+          className="pizza_container__button"
+          type="button"
+          onClick={handleAddToBasket}
+        >
+          Add to basket
+        </button>
       </div>
     </div>
   );
@@ -39,6 +54,9 @@ Pizza.propTypes = {
   }),
   currency: PropTypes.oneOf([ 'eur', 'usd' ]),
   imageSRC: PropTypes.string,
+  updateItemsPriceEUR: PropTypes.func,
+  updateItemsPriceUSD: PropTypes.func,
+  updateOrderItems: PropTypes.func,
 };
 
 
