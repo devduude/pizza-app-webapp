@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-import Pizza from './Components/Pizza/Pizza.jsx';
+import PropTypes from 'prop-types';
+
+import Pizza from './Components/Pizza';
 
 import './homepage.styl';
 
 
-const HomePage = () => {
+const HomePage = (props) => {
+  const {
+    currency,
+    switchCurrency,
+  } = props;
+
   const [ pizzaArray, addPizza ] = React.useState([]);
 
   // eslint-disable-next-line no-undef
@@ -38,9 +44,18 @@ const HomePage = () => {
   return (
     <div className="home_container">
       <div className="home_container__topbar">
-        <span className="home_container__title">
-          Pizza place
-        </span>
+        <div className="home_container__left_side">
+          <span className="home_container__title">
+            Pizza place
+          </span>
+          <button
+            onClick={switchCurrency}
+            type="button"
+            className="home_container__currency"
+          >
+            {currency}
+          </button>
+        </div>
         <RouterLink to="/basket" className="home_container__basket">
           Basket
         </RouterLink>
@@ -52,7 +67,10 @@ const HomePage = () => {
   );
 };
 
-HomePage.propTypes = {};
+HomePage.propTypes = {
+  currency: PropTypes.oneOf([ 'usd', 'eur' ]),
+  switchCurrency: PropTypes.func,
+};
 
 
 export default HomePage;
