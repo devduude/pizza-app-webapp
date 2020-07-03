@@ -57,7 +57,7 @@ module.exports = {
         ],
       },
     }],
-    // 'react/jsx-one-expression-per-line': 'off',
+    'react/jsx-one-expression-per-line': [ 'error', { allow: 'single-child' }],
     'react/jsx-filename-extension': 'error',
     'react/jsx-wrap-multilines': [ 'error', { declaration: 'parens-new-line', assignment: 'parens-new-line', return: 'parens-new-line', arrow: 'parens-new-line', condition: 'parens-new-line' }],
     'react/jsx-key': 'error',
